@@ -1,0 +1,39 @@
+{% extends 'menu/base.html' %}
+{% block content %}
+  {% for sibling in siblings %}
+    <div class="row text-center" style="width: 100%;">
+      <div class="col-12">
+        <div class="card mb-4 box-shadow">
+          <div class="card-header" style="background-color: lightblue;">
+            <h4 class="my-0 font-weight-normal">{{ sibling.name|title }}</h4>
+          </div>
+          <div class="card-body">
+            <div class="row">
+              <a class="p-2 btn btn-outline-secondary col-6" href="{% url 'menu:view' sibling.slug %}">Подробнее</a>
+              <a class="p-2 btn btn-outline-danger col-6" href="{% url 'menu:delete' sibling.slug %}">удалить</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    {% if sibling == menu %}
+      {% for child in childs %}
+        <div class="row text-center" style="width: 100%;">
+          <div class="col-12">
+            <div class="card mb-4 box-shadow">
+              <div class="card-header">
+                <h4 class="my-0 font-weight-normal">{{ child.name|title }}</h4>
+              </div>
+              <div class="card-body">
+                <div class="row">
+                  <a class="p-2 btn btn-outline-secondary col-6" href="{% url 'menu:view' child.slug %}">Подробнее</a>
+                  <a class="p-2 btn btn-outline-danger col-6" href="{% url 'menu:delete' child.slug %}">удалить</a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      {% endfor %}
+    {% endif %}
+  {% endfor %}
+{% endblock %}

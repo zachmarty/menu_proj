@@ -1,0 +1,20 @@
+{% extends 'menu/base.html' %}
+{% block content %}
+  {% for menu in menu_list %}
+    <div class="row text-center" style="width: 100%;">
+      <div class="col-12">
+        <div class="card mb-4 box-shadow">
+          <div class="card-header">
+            <h4 class="my-0 font-weight-normal">{{ menu.name|title }}</h4>
+          </div>
+          <div class="card-body">
+            <div class="row">
+              <a class="p-2 btn btn-outline-success col-6" href="{% url "menu:view" menu.slug%}">Подробнее</a>
+              <a class="p-2 btn btn-outline-danger col-6" href="{% url 'menu:delete' menu.slug%}">удалить</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  {% endfor %}
+{% endblock %}
